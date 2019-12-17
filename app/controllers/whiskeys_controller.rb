@@ -1,7 +1,7 @@
 class WhiskeysController < ApplicationController 
     get '/whiskeys' do 
         @whiskeys = Whiskey.all
-        if !logged_in?
+        if logged_in?
             erb :"whiskeys/index"
         else
         redirect to '/'
