@@ -1,14 +1,14 @@
 class WhiskeysController < ApplicationController 
     get '/whiskeys' do 
-        @whiskeys = Whiskey.all
-        if logged_in?
+        redirect_if_not_logged_in 
+        @whiskeys = current_user.whiskeys
+        
             erb :"whiskeys/index"
-        else
-        redirect to '/'
-        end
+       
     end
 
     get '/whiskeys/new' do
+        redirect_if_not_logged_in 
         # if !logged_in?
         #     redirect '/login'
         # else
@@ -17,6 +17,7 @@ class WhiskeysController < ApplicationController
     end
 
     post '/whiskeys' do 
+        redirect_if_not_logged_in 
         whiskey = Whiskey.new(whiskey_params)
         if whiskey.save 
             redirect '/whiskeys'
@@ -27,11 +28,13 @@ class WhiskeysController < ApplicationController
     end
 
     get '/whiskeys/:id' do 
+        redirect_if_not_logged_in 
         @whiskey = Whiskey.find(params[:id])
         erb :'whiskeys/show'
     end
 
     get '/whiskeys/:id/edit' do 
+        redirect_if_not_logged_in 
         set_whiskey 
 
         erb :'/whiskeys/edit'
@@ -40,6 +43,7 @@ class WhiskeysController < ApplicationController
     
 
     patch '/whiskeys/:id' do 
+        redirect_if_not_logged_in 
         set_whiskey 
        if @whiskey.update(whiskey_params)
         redirect '/whiskeys'

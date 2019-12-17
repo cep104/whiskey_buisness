@@ -27,6 +27,13 @@ class ApplicationController < Sinatra::Base
             @current_user || User.find_by(:username => session[:username]) if session[:username]
         end
 
+        def redirect_if_not_logged_in 
+            unless logged_in?
+                redirect '/login'
+            end
+        end
+            
+
         def login(username, password)
             session[:username] = username
             user = User.find_by(:username => username)
@@ -44,11 +51,11 @@ class ApplicationController < Sinatra::Base
          private 
 
     def user_params 
-        {username: params[:username], password: params[:password] }
+        {username: params[:username], password: params[:password]}
     end
 
     def whiskey_params 
-        {name: params[:name], description: params[:description] }
+        {name: params[:name], description: params[:description], user: current_user }
     end
     end
 
