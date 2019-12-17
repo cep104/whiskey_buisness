@@ -8,8 +8,10 @@
 <input type="textarea" name="description">
 </p>
 <p>
-<label for="distillery">
-<input type="radio" name="distillery">
+<label for="distillery">Distilleries: </label>
+  <% Distillery.all.each do |distillery| %></br>
+    <input id="<%= distillery.name%>" type="checkbox" name="distillerys[]" value="<%= distillery.id %>"><%=distillery.name%>
+  <% end %>
 </p>
 <input type="submit" value="Create Whiskey">
 

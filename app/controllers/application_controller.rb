@@ -46,6 +46,10 @@ class ApplicationController < Sinatra::Base
     def user_params 
         {username: params[:username], password: params[:password] }
     end
+
+    def whiskey_params 
+        {name: params[:name], description: params[:description] }
+    end
     end
 
 end

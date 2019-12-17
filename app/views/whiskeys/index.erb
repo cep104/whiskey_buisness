@@ -1,1 +1,7 @@
  <h1>List of Whiskeys: </h1>
+ <ul><% @whiskeys.each do |whiskey|%>
+ <li><a href="/whiskeys/<%= whiskey.id %>"><%=whiskey.name%></a></li>
+ <%end%>
+ 
+ </ul>
+ <button><a href="/whiskeys/new">Create New Whiskey</a></button>

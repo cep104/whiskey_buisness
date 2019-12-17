@@ -1,5 +1,6 @@
 class WhiskeysController < ApplicationController 
     get '/whiskeys' do 
+        @whiskeys = Whiskey.all
         if !logged_in?
             erb :"whiskeys/index"
         else
@@ -15,16 +16,47 @@ class WhiskeysController < ApplicationController
     #   end
     end
 
-    get '/whiskeys/:id/edit' do 
-        if !logged_in?
-            redirect '/login'
+    post '/whiskeys' do 
+        whiskey = Whiskey.new(whiskey_params)
+        if whiskey.save 
+            redirect '/whiskeys'
         else
-            whiskey = Whiskey.find(params[:id])
-            if current_user.whiskeys.find_by(params[:id])
-            "An edit whiskey form #{current_user.id} is editing #{whiskey.id}"
-            else 
-                redirect '/whiskeys'
-            end
-        end   
+        @errors = [params.to_s]
+        erb :failure
+        end
     end
+
+    get '/whiskeys/:id' do 
+        @whiskey = Whiskey.find(params[:id])
+        erb :'whiskeys/show'
+    end
+
+    get '/whiskeys/:id/edit' do 
+        set_whiskey 
+
+        erb :'/whiskeys/edit'
+
+    end
+    
+
+    patch '/whiskeys/:id' do 
+        set_whiskey 
+       if @whiskey.update(whiskey_params)
+        redirect '/whiskeys'
+       else
+        # @whiskey = Whiskey.find_by(id: params[:id])
+        @errors = ["could not update"]
+        erb :failure
+    end
+end
+
+    private 
+
+    def set_whiskey 
+        @whiskey = Whiskey.find_by(id: params[:id])
+        unless @whiskey 
+            @errors = ["invalid whiskey id"]
+            redirect '/'
+    end
+end
 end 
