@@ -9,20 +9,18 @@ class WhiskeysController < ApplicationController
 
     get '/whiskeys/new' do
         redirect_if_not_logged_in 
-        # if !logged_in?
-        #     redirect '/login'
-        # else
+       
             erb :"whiskeys/new"
-    #   end
+  
     end
 
     post '/whiskeys' do 
         redirect_if_not_logged_in 
         whiskey = Whiskey.new(whiskey_params)
-        if whiskey.save 
+        if whiskey.save && whiskey.name != ""
             redirect '/whiskeys'
         else
-        @errors = [params.to_s]
+        @errors = ["could not make new whiskey"]
         erb :failure
         end
     end
@@ -53,10 +51,7 @@ class WhiskeysController < ApplicationController
         erb :failure
     end
 
-    delete '/whiskeys/2' do
-        "Hello World"
-        erb :'/delete'
-      end
+    
       
 end
 
