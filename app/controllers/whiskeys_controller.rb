@@ -1,18 +1,18 @@
 class WhiskeysController < ApplicationController 
     get '/whiskeys' do 
         if !logged_in?
-            redirect '/'
+            erb :"whiskeys/index"
         else
-        erb :"whiskeys/index"
+        redirect to '/'
         end
     end
 
     get '/whiskeys/new' do
-        if !logged_in?
-            redirect '/login'
-        else
+        # if !logged_in?
+        #     redirect '/login'
+        # else
             erb :"whiskeys/new"
-      end
+    #   end
     end
 
     get '/whiskeys/:id/edit' do 

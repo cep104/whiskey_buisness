@@ -5,7 +5,7 @@ class ApplicationController < Sinatra::Base
         set :public_folder, 'public'
         set :views, 'app/views'
         enable :sessions unless test?
-        set :session_secret, "secretgift"
+        set :session_secret, "secretwhiskey"
     end
 
     get '/' do 
@@ -27,11 +27,11 @@ class ApplicationController < Sinatra::Base
             @current_user || User.find_by(:email => session[:email]) if session[:email]
         end
 
-        def login(email, password)
-            session[:email] = email
-            user = User.find_by(:email => email)
+        def login(username, password)
+            session[:username] = username
+            user = User.find_by(:username => username)
             if user && user.authenticate(password)
-                session[:email] = user.email
+                session[:id] = user.id
             else 
                 redirect '/login'
             end
@@ -40,6 +40,12 @@ class ApplicationController < Sinatra::Base
         def logout
             session.clear
         end
+
+         private 
+
+    def user_params 
+        {username: params[:username], password: params[:password] }
+    end
     end
 
 end

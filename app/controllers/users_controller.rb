@@ -5,15 +5,14 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do 
-        @errors = ["not yet implemented"]
-        # @user = User.new 
-        # @user.email = params[:email]
-        # @user.password = params[:password]
-        # if @user.save 
-        #     redirect '/login'
-        # else 
-        #     erb :"users/new"
-        # end
-        erb :'/failure'
+        @user = User.new(user_params)
+        if @user.save 
+            redirect '/login'
+        else 
+            @errors = ["Signup failed"]
+            erb :"/failure"
+        end
+        
     end
+    
 end
