@@ -3,4 +3,8 @@
   <p><%=@whiskey.distilleries%></p>
   <button><a href="/whiskeys/<%=@whiskey.id%>/edit">Edit Whiskey</a></button></br></br>
   <button><a href="/whiskeys">List of Whiskeys</a></button>
+  <form method="POST" action="/whiskeys/<%= @whiskey.id %>">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input type="submit" value="delete">
+    </form>
   

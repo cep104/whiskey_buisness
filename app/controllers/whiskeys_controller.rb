@@ -41,7 +41,7 @@ class WhiskeysController < ApplicationController
 
     end
     
-
+   
     patch '/whiskeys/:id' do 
         redirect_if_not_logged_in 
         set_whiskey 
@@ -52,6 +52,12 @@ class WhiskeysController < ApplicationController
         @errors = ["could not update"]
         erb :failure
     end
+
+    delete '/whiskeys/2' do
+        "Hello World"
+        erb :'/delete'
+      end
+      
 end
 
     private 

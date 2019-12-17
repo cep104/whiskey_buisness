@@ -48,6 +48,12 @@ class ApplicationController < Sinatra::Base
             session.clear
         end
 
+        delete '/whiskeys/:id' do
+            @whiskey = Whiskey.find(params["id"])
+            @whiskey.destroy
+            erb :'/delete'
+          end
+
          private 
 
     def user_params 
