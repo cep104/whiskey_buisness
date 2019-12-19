@@ -1,0 +1,8 @@
+<h1>List of Distilleries: </h1>
+ <ul><% @distilleries.each do |distillery|%>
+ <li><a href="/distilleries/<%= distillery.id %>"><%=distillery.name%></a></li>
+ <%end%>
+  
+ </ul>
+ <button><a href="/distilleries/new">Create New Distillery</a></button>
+ <button><a href="/logout">Log Out</a></button>

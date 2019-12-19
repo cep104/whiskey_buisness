@@ -8,10 +8,9 @@ class ApplicationController < Sinatra::Base
         set :session_secret, "secretwhiskey"
     end
 
-    get '/' do 
-       session[:greeting] = "Hello World!"
-      
-    end
+    get '/' do
+        erb :index
+      end
 
     get '/failure' do 
      
@@ -61,7 +60,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def whiskey_params 
-        {name: params[:name], description: params[:description], user: current_user }
+        {name: params[:name], description: params[:description], distillery_id: params[:distillery_id], user: current_user }
     end
     end
 

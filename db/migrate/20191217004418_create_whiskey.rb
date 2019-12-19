@@ -4,6 +4,7 @@ class CreateWhiskey < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :description
       t.integer :user_id
+      t.integer :distillery_id
     end
   end
 end

@@ -1,7 +1,7 @@
 class WhiskeysController < ApplicationController 
     get '/whiskeys' do 
         redirect_if_not_logged_in 
-        @whiskeys = current_user.whiskeys
+        @whiskeys = Whiskey.all
         
             erb :"whiskeys/index"
        
@@ -17,7 +17,7 @@ class WhiskeysController < ApplicationController
     post '/whiskeys' do 
         redirect_if_not_logged_in 
         whiskey = Whiskey.new(whiskey_params)
-        if whiskey.save && whiskey.name != ""
+        if whiskey.save && whiskey != ""
             redirect '/whiskeys'
         else
         @errors = ["could not make new whiskey"]
