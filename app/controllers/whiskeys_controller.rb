@@ -1,7 +1,7 @@
 class WhiskeysController < ApplicationController 
     get '/whiskeys' do 
         redirect_if_not_logged_in 
-        @whiskeys = Whiskey.all
+        @whiskeys = current_user.whiskeys
         
             erb :"whiskeys/index"
        
@@ -62,6 +62,7 @@ end
         unless @whiskey 
             @errors = ["invalid whiskey id"]
             redirect '/'
+        end
     end
-end
+
 end 

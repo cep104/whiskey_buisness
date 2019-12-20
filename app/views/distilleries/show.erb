@@ -4,4 +4,12 @@
 <h2>List of Whiskeys</h2>
   <% @distillery.whiskeys.each do |whiskey|  %>
     <li><%= whiskey.name %></li>
-  <% end%>
+  <% end%></br>
+
+  <button><a href="/distilleries/<%=@distillery.id%>/edit">Edit Distillery</a></button></br></br>
+  <button><a href="/distilleries">List of Distilleries</a></button>
+  <form method="POST" action="/distilleries/<%= @distillery.id %>">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete Distillery">
+    </form>
+  

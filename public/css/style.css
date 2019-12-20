@@ -1,4 +1,16 @@
 body {
-    background-image: url("../images/outside.jpg");
-    background-color: red;
+    background-image: url("../images/background.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+   
   }
+ul li a{
+        color: white;
+      text-decoration: none;
+  }
+
+  h1 {
+      text-align: center;
+  }
+ 

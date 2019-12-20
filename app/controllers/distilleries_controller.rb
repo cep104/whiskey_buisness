@@ -25,6 +25,14 @@ class DistilleriesController < ApplicationController
         end
     end
 
+    get '/distilleries/:id/edit' do 
+        redirect_if_not_logged_in 
+        set_distillery
+
+        erb :'/distilleries/edit'
+
+    end
+
     post '/distilleries' do 
         redirect_if_not_logged_in 
         distillery = Distillery.new(distillery_params)
@@ -38,9 +46,29 @@ class DistilleriesController < ApplicationController
        
     end
 
+    patch '/distilleries/:id' do 
+        redirect_if_not_logged_in 
+        set_distillery
+       if @distillery.update(distillery_params)
+        redirect '/distilleries'
+       else
+        # @whiskey = Whiskey.find_by(id: params[:id])
+        @errors = ["could not update"]
+        erb :failure
+       end
+    end
+
     private 
 
     def distillery_params 
         {name: params[:name], about: params[:about], user: current_user }
+    end
+
+    def set_distillery
+        @distillery = Distillery.find_by(id: params[:id])
+        unless @distillery
+            @errors = ["invalid whiskey id"]
+            redirect '/failure'
+        end
     end
 end

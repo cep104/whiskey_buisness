@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
             user = User.find_by(username: params[:username])
             if user && user.authenticate(params[:password])
                 session[:username] = user.username
-                redirect '/whiskeys'
+                redirect '/distilleries'
             else 
                 @errors = ["Invalid username or password"]
                 erb :'/failure'

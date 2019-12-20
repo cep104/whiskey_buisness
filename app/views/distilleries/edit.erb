@@ -1,0 +1,15 @@
+<h1>Edit Distillery</h1>
+ <form method="POST" action="/distilleries/<%= @distillery.id %>">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+<label for="name">Name: </label>
+<input type="text" name="name" value="<%=@distillery.name%>"></p>
+<p>
+<label for="about">About: </label>
+<textarea name="about" value="<%=@distillery.about%>"></textarea>
+</p>
+<p>
+
+<input type="submit" value="Edit Distillery"></br></br>
+
+<form>
+<button><a href="/distilleries/<%=@distillery.id%>">Back</a></button>

@@ -53,6 +53,12 @@ class ApplicationController < Sinatra::Base
             erb :'/delete'
           end
 
+          delete '/distilleries/:id' do
+            @distillery = Distillery.find(params["id"])
+            @distillery.destroy
+            erb :'distilleries/delete'
+          end
+
          private 
 
     def user_params 
