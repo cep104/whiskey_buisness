@@ -49,11 +49,8 @@ class WhiskeysController < ApplicationController
         # @whiskey = Whiskey.find_by(id: params[:id])
         @errors = ["could not update"]
         erb :failure
+        end
     end
-
-    
-      
-end
 
     private 
 
