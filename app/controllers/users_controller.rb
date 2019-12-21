@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
     post '/signup' do 
         @user = User.new(user_params)
-        if @user.save 
+        if @user.save && @user.username != ""
             redirect '/login'
         else 
             @errors = ["Signup failed"]

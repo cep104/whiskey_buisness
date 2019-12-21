@@ -1,8 +1,21 @@
+<div id="dlist">
+<header>
+ <nav>
+ <ul>
+ <li><a href="/whiskeys">Whiskeys</a></li>
+ <li><a href="/distilleries">Distilleries</a></li>
+ <li><a href="/logout">Log Out</a></li>
+</ul>
+ </nav>
+ </header>
 <h1>List of Distilleries: </h1>
  <ul><% @distilleries.each do |distillery|%>
  <li><a href="/distilleries/<%= distillery.id %>"><%=distillery.name%></a></li>
  <%end%>
   
  </ul>
+  <div class="centerbtn">
  <button><a href="/distilleries/new">Create New Distillery</a></button>
- <button><a href="/logout">Log Out</a></button>
+ 
+ </div>
+ </div>

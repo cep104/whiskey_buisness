@@ -27,7 +27,7 @@ class WhiskeysController < ApplicationController
 
     get '/whiskeys/:id' do 
         redirect_if_not_logged_in 
-        @whiskey = Whiskey.find(params[:id])
+        set_whiskey
         erb :'whiskeys/show'
     end
 
@@ -58,7 +58,7 @@ class WhiskeysController < ApplicationController
         @whiskey = Whiskey.find_by(id: params[:id])
         unless @whiskey 
             @errors = ["invalid whiskey id"]
-            redirect '/'
+            redirect '/failure'
         end
     end
 
