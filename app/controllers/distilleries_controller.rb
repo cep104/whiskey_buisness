@@ -15,7 +15,7 @@ class DistilleriesController < ApplicationController
 
     get '/distilleries/:id' do 
         redirect_if_not_logged_in 
-        
+        set_distillery 
         @distillery = Distillery.find(params[:id])
         if  @distillery
         erb :'distilleries/show'
@@ -64,10 +64,10 @@ class DistilleriesController < ApplicationController
         {name: params[:name], about: params[:about], user: current_user }
     end
 
-    def set_distillery
+    def set_distillery 
         @distillery = Distillery.find_by(id: params[:id])
-        unless @distillery
-            @errors = ["invalid whiskey id"]
+        unless @distillery 
+            @errors = ["invalid distillery id"]
             redirect '/failure'
         end
     end

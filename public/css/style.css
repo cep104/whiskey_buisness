@@ -53,6 +53,9 @@ a{
   h4:hover {
     background-color: rgb(110, 107, 107,.5);
 }
+button {
+    font-size: 1em;
+}
    /* -------------------------- MAIN INDEX ----------------------*/ 
    #mainindex {
     width:98%; 
@@ -268,9 +271,7 @@ a{
     padding-bottom: 1%;
 }
 
-#wlist h1{
 
-}
 
 /* -------------------------- Distillery PAGE ----------------------*/
 #dlist { 
@@ -340,4 +341,34 @@ select {
 select:hover {
     background-color:black;
 }
-  
+/* -------------------------- Distillery show ----------------------*/
+
+#distilnum input{
+    color:#f1edc0cc;
+    margin-left:2%;
+    background-color: rgb(138, 129, 113);
+}
+
+#distilnum h2 {
+    text-decoration: underline;
+}
+
+#distilnum h1 {
+    font-family: 'Girassol', cursive;
+    font-size: 3em;
+}
+
+  /* -------------------------- Whiskey show----------------------*/
+  #whiskeyshow input{
+    color:#f0ecc0;
+    margin-left:2%;
+    background-color: rgb(138, 129, 113);
+}
+#whiskeyshow h2 {
+    text-decoration: underline;
+}
+
+#whiskeyshow h1 {
+    font-family: 'Girassol', cursive;
+    font-size: 3em;
+}

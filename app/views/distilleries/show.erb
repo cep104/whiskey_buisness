@@ -1,3 +1,4 @@
+<div id="distilnum">
 <h1><%= @distillery.name %></h1>
 <h2>About Distillery</h2>
 <p><%= @distillery.about%></p>
@@ -7,9 +8,10 @@
   <% end%></br>
 
   <button><a href="/distilleries/<%=@distillery.id%>/edit">Edit Distillery</a></button></br></br>
-  <button><a href="/distilleries">List of Distilleries</a></button>
+  <button><a href="/distilleries">List of Distilleries</a></button></br></br>
   <form method="POST" action="/distilleries/<%= @distillery.id %>">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete Distillery">
     </form>
+    </div>
   
