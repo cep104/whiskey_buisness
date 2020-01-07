@@ -34,8 +34,13 @@ class WhiskeysController < ApplicationController
     get '/whiskeys/:id/edit' do 
         redirect_if_not_logged_in 
         set_whiskey 
-
-        erb :'/whiskeys/edit'
+        
+        if can_edit(@whiskey)
+            erb :'/whiskeys/edit'
+        else 
+            redirect '/'
+        end
+        
 
     end
     

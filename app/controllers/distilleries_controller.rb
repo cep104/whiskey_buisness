@@ -28,8 +28,12 @@ class DistilleriesController < ApplicationController
     get '/distilleries/:id/edit' do 
         redirect_if_not_logged_in 
         set_distillery
-
-        erb :'/distilleries/edit'
+        if can_edit(@distillery)
+            erb :'/distilleries/edit'
+        else 
+            redirect :index
+        end
+        
 
     end
 

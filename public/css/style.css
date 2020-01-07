@@ -7,6 +7,7 @@ body {
     font-family: 'Roboto', sans-serif;
     max-width:1280px;
     min-width:780px;
+    
   }
 
   ul li {
@@ -63,6 +64,7 @@ button {
    margin: 0 auto;
    padding-bottom: 10%;
    overflow:auto;
+   
  }
   
    #mainindex header img {

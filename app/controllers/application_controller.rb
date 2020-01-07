@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
         end
 
         def current_user 
-            @current_user || User.find_by(:username => session[:username]) if session[:username]
+            @current_user ||= User.find_by(:username => session[:username]) 
         end
 
         def redirect_if_not_logged_in 
@@ -32,6 +32,12 @@ class ApplicationController < Sinatra::Base
             end
         end
             
+        def can_edit(object)
+            if current_user.id == object.user.id   
+                
+            end
+            
+        end
 
         def login(username, password)
             session[:username] = username
@@ -46,7 +52,7 @@ class ApplicationController < Sinatra::Base
         def logout
             session.clear
         end
-
+    
         delete '/whiskeys/:id' do
             @whiskey = Whiskey.find(params["id"])
             @whiskey.destroy
